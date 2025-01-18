@@ -1,16 +1,14 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { TokenComponent } from './components/token/token.component';
+import { ThemeComponent } from './components/theme/theme.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [NgOptimizedImage, TokenComponent, ThemeComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'cloudonix-angular-test';
-
-  constructor(){
-    
-  }
+  constructor() {}
 }

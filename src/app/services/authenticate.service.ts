@@ -10,7 +10,7 @@ export class AuthenticateService {
     this.token = token;
   }
 
-  getToken() {
-    return this.token;
+  getToken(): string {
+    return this.token ?? '';
   }
 }

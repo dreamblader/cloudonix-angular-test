@@ -1,5 +1,10 @@
 interface Product {
-    //TODO
+  id: number;
+  name: string;
+  description: string;
+  sku: string;
+  cost: number;
+  profile: object;
 }
 
-export default Product
+export default Product;
