@@ -1,3 +1,7 @@
 <app-theme />
 <img ngSrc="/assets/cloudonix_logo.png" width="302" height="55" priority />
-<token-form />
+@if(!logged){
+<token-form (addingTokenEvent)="startApp()" />
+} @else{
+<product-table />
+}

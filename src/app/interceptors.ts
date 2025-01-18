@@ -1,38 +1,20 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { AuthenticateService } from './services/authenticate.service';
-import { Injectable } from '@angular/core';
+import { inject } from '@angular/core';
 
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthenticateService) {}
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    const token = this.authService.getToken();
+export function authInterceptor(
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+): Observable<HttpEvent<unknown>> {
+  const token = inject(AuthenticateService).getToken();
 
-    if (token) {
-      req = req.clone({
-        setHeaders: { Authorization: `Authorization Bearer ${token}` },
-      });
-    }
-
-    return next.handle(req).pipe(
-      catchError((err) => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 401) {
-            // redirect user to the logout page
-          }
-        }
-        return throwError(() => err);
-      })
-    );
+  if (token) {
+    req = req.clone({
+      setHeaders: { Authorization: `Bearer ${token}` },
+    });
+    console.log(req);
   }
+
+  return next(req);
 }

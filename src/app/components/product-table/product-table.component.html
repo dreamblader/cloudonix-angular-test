@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>ID</th>
+    <th>SKU</th>
+    <th>Name</th>
+    <th>Price</th>
+  </tr>
+  @for(product of products; track product){
+  <tr>
+    <th>{{ product.id }}</th>
+    <th>{{ product.sku }}</th>
+    <th>{{ product.name }}</th>
+    <th>{{ product.cost }}</th>
+  </tr>
+  }
+</table>

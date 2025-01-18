@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { FormsModule } from '@angular/forms';
 
@@ -11,12 +11,14 @@ import { FormsModule } from '@angular/forms';
 export class TokenComponent {
   token = '';
   error = false;
+  @Output() addingTokenEvent = new EventEmitter<boolean>();
   constructor(private auth: AuthenticateService) {}
 
   saveToken() {
     this.error = this.token.length <= 0;
     if (!this.error) {
       this.auth.saveToken(this.token);
+      this.addingTokenEvent.emit(true);
       console.log(this.auth.getToken());
     }
   }

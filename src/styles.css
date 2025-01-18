@@ -4,7 +4,7 @@
   --secondary: #134ffe;
   --body: #fff;
   --text-menu: #fff;
-  --text-body: #4b4b4b;
+  --text-body: #000;
 }
 
 .dark-theme {
@@ -17,10 +17,13 @@
 
 body {
   background-color: var(--body);
+  color: var(--text-body);
   transition: 0.5s;
 }
 
 app-root {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
