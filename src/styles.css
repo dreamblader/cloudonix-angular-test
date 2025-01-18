@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --primary: #172047;
-  --secondary: #134ffe;
+  --primary: #60657e;
+  --secondary: #83a2ff;
+  --accent: #ce5b9a;
   --body: #fff;
   --text-menu: #fff;
   --text-body: #000;
@@ -10,8 +11,8 @@
 .dark-theme {
   --primary: #172047;
   --secondary: #134ffe;
+  --accent: #d20072;
   --body: #434343;
-  --text-menu: #fff;
   --text-body: #fff;
 }
 
