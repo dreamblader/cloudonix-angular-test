@@ -10,10 +10,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class TokenComponent {
   token = '';
+  error = false;
   constructor(private auth: AuthenticateService) {}
 
   saveToken() {
-    if (this.token.length > 0) {
+    this.error = this.token.length <= 0;
+    if (!this.error) {
       this.auth.saveToken(this.token);
       console.log(this.auth.getToken());
     }
