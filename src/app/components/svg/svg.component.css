@@ -1,0 +1,14 @@
+svg {
+  width: inherit;
+  height: inherit;
+}
+
+.small {
+  width: 15px;
+  height: 15px;
+}
+
+.medium {
+  width: 25px;
+  height: 25px;
+}

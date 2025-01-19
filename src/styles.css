@@ -28,3 +28,9 @@ app-root {
   align-items: center;
   justify-content: center;
 }
+
+.container {
+  background-color: rgba(97, 97, 97, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}

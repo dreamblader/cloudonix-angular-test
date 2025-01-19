@@ -4,10 +4,11 @@ import Product from '../../models/product';
 import { CrudToolsComponent } from '../crud-tools/crud-tools.component';
 import { map, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { SvgComponent } from '../svg/svg.component';
 
 @Component({
   selector: 'product-table',
-  imports: [CrudToolsComponent, AsyncPipe],
+  imports: [SvgComponent, CrudToolsComponent, AsyncPipe],
   templateUrl: './product-table.component.html',
   styleUrl: './product-table.component.css',
 })

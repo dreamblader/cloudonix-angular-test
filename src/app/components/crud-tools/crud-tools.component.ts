@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CrudService } from '../../services/crud.service';
+import { SvgComponent } from '../svg/svg.component';
 
 export enum ToolOptions {
   VIEW,
@@ -9,7 +10,7 @@ export enum ToolOptions {
 
 @Component({
   selector: 'crud-tools',
-  imports: [],
+  imports: [SvgComponent],
   templateUrl: './crud-tools.component.html',
   styleUrl: './crud-tools.component.css',
 })

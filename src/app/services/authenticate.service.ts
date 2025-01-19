@@ -13,7 +13,7 @@ export class AuthenticateService {
   }
 
   logIn() {
-    this.redirectTo = this.router.url;
+    this.redirectTo = this.router.url !== '/login' ? this.router.url : '/';
     this.router.navigate(['/login']);
   }
 
