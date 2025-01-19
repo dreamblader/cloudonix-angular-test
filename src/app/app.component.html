@@ -1,10 +1,11 @@
 <app-theme />
-<app-modal>
+<!-- <app-modal>
     <p>IT THIS REAL?</p>
-</app-modal>
+</app-modal> -->
 <img ngSrc={{logoSrc()}} width="302" height="55" priority />
-@if(!logged){
+<!-- @if(!logged){
 <token-form (addingTokenEvent)="startApp()" />
 } @else{
 <product-table />
-}
+} -->
+<router-outlet />

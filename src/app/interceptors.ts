@@ -1,5 +1,10 @@
-import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandlerFn,
+  HttpRequest,
+} from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 import { AuthenticateService } from './services/authenticate.service';
 import { inject } from '@angular/core';
 
@@ -7,7 +12,8 @@ export function authInterceptor(
   req: HttpRequest<unknown>,
   next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> {
-  const token = inject(AuthenticateService).getToken();
+  const authService = inject(AuthenticateService);
+  const token = authService.getToken();
 
   if (token) {
     req = req.clone({
@@ -15,5 +21,14 @@ export function authInterceptor(
     });
   }
 
-  return next(req);
+  return next(req).pipe(
+    catchError((error) => {
+      if (error instanceof HttpErrorResponse) {
+        if (error.status == 401) {
+          authService.logIn();
+        }
+      }
+      return throwError(() => error);
+    })
+  );
 }
