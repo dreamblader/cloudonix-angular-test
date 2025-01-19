@@ -11,7 +11,6 @@ import { ThemeService } from '../../services/theme.service';
   styleUrl: './theme.component.css',
 })
 export class ThemeComponent {
-  private readonly document = inject(DOCUMENT);
   darkMode: Signal<Boolean>;
 
   constructor(private theme: ThemeService) {
@@ -20,10 +19,5 @@ export class ThemeComponent {
 
   darkModeClick() {
     this.theme.toogleTheme();
-    if (this.darkMode()) {
-      this.document.body.classList.add('dark-theme');
-    } else {
-      this.document.body.classList.remove('dark-theme');
-    }
   }
 }

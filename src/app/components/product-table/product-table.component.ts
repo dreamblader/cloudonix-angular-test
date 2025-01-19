@@ -14,16 +14,16 @@ import { AsyncPipe } from '@angular/common';
 export class ProductTableComponent {
   search = '';
   products$: Observable<Product[]>;
-  searchedProducts$: Observable<Product[]>;
 
   constructor(private productService: ProductService) {
-    this.products$ = this.productService.getProducts();
-    this.searchedProducts$ = this.products$.pipe(
-      map((products) =>
-        products.filter((product) =>
-          product.name.toLowerCase().includes(this.search.toLowerCase())
+    this.products$ = this.productService
+      .getProducts()
+      .pipe(
+        map((products) =>
+          products.filter((product) =>
+            product.name.toLowerCase().includes(this.search.toLowerCase())
+          )
         )
-      )
-    );
+      );
   }
 }

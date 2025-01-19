@@ -1,12 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import {
-  Component,
-  computed,
-  ElementRef,
-  Signal,
-  viewChild,
-  ViewChild,
-} from '@angular/core';
+import { Component, computed, Signal } from '@angular/core';
 import { TokenComponent } from './components/token/token.component';
 import { ThemeComponent } from './components/theme/theme.component';
 import { ProductTableComponent } from './components/product-table/product-table.component';
@@ -28,7 +21,6 @@ import { ThemeService } from './services/theme.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  @ViewChild(ModalComponent) modal!: ModalComponent;
   logged = false;
   logoSrc: Signal<string>;
 

@@ -28,12 +28,12 @@
     <th>Price</th>
     <th>Actions</th>
   </tr>
-  @for(product of searchedProducts$ | async; track product){
+  @for(product of products$ | async; track product){
   <tr>
     <td>{{ product.id }}</td>
     <td>{{ product.sku }}</td>
     <td>{{ product.name }}</td>
-    <td>{{ product.cost }}</td>
+    <td>${{ product.cost.toFixed(2) }}</td>
     <td><crud-tools [productId]="product.id" /></td>
   </tr>
   }

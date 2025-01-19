@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Product from '../models/product';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, map, Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -17,6 +17,7 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
     const endpoint = '/items';
     this.products$ = this.http.get<Product[]>(environment.rootURL + endpoint);
+
     return this.products$;
   }
 }
