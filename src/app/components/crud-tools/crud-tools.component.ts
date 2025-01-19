@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CrudService } from '../../services/crud.service';
 
 export enum ToolOptions {
   VIEW,
@@ -15,7 +16,9 @@ export enum ToolOptions {
 export class CrudToolsComponent {
   @Input({ required: true }) productId!: number;
 
+  constructor(private crud: CrudService) {}
+
   onToolClicked(action: ToolOptions): void {
-    console.log(this.productId, action);
+    this.crud.action(action, this.productId);
   }
 }

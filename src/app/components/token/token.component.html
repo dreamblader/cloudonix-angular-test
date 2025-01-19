@@ -1,8 +1,10 @@
-<label for="token">
-  Put Token:
-  <input id="token" type="text" [(ngModel)]="token" />
+<div class="container">
+  <label for="token">
+    Put Token:
+    <input id="token" type="text" [(ngModel)]="token" />
+    <button (click)="saveToken()">Enter</button>
+  </label>
   @if(error){
   <p class="error">Field token should not be empty</p>
   }
-  <button (click)="saveToken()">Enter</button>
-</label>
+</div>

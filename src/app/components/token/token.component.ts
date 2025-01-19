@@ -19,7 +19,6 @@ export class TokenComponent {
     if (!this.error) {
       this.auth.saveToken(this.token);
       this.addingTokenEvent.emit(true);
-      console.log(this.auth.getToken());
     }
   }
 }
