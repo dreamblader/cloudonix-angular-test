@@ -38,7 +38,9 @@ app-root {
 }
 
 input,
-button {
+button,
+select,
+option {
   font-size: large;
 }
 

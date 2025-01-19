@@ -50,6 +50,10 @@ button {
   cursor: pointer;
 }
 
+input[type="checkbox"] {
+  scale: 1.5;
+}
+
 button:disabled,
 button[disabled] {
   opacity: 0.25;

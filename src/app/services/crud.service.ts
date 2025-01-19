@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { ToolOptions } from '../components/crud-tools/crud-tools.component';
+import { Router } from '@angular/router';
 
 export interface CrudAction {
   type: ToolOptions;
@@ -11,10 +11,12 @@ export interface CrudAction {
   providedIn: 'root',
 })
 export class CrudService {
-  private actionSubject = new Subject<CrudAction>();
-  actions$ = this.actionSubject.asObservable();
+  constructor(private router: Router) {}
 
   action(type: ToolOptions, id?: number): void {
-    this.actionSubject.next({ type, id });
+    const isEdit = type == ToolOptions.EDIT;
+    this.router.navigate([`/product/${id}`], {
+      queryParams: { edit: isEdit },
+    });
   }
 }

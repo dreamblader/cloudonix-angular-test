@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CrudService } from '../../services/crud.service';
 import { SvgComponent } from '../svg/svg.component';
+import { ProductService } from '../../services/product.service';
 
 export enum ToolOptions {
   VIEW,
@@ -17,7 +18,10 @@ export enum ToolOptions {
 export class CrudToolsComponent {
   @Input({ required: true }) productId!: number;
 
-  constructor(private crud: CrudService) {}
+  constructor(
+    private crud: CrudService,
+    private productService: ProductService
+  ) {}
 
   onToolClicked(action: ToolOptions): void {
     this.crud.action(action, this.productId);
