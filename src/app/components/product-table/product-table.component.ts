@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import Product from '../../models/product';
 import { CrudToolsComponent } from '../crud-tools/crud-tools.component';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -12,9 +12,18 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './product-table.component.css',
 })
 export class ProductTableComponent {
+  search = '';
   products$: Observable<Product[]>;
+  searchedProducts$: Observable<Product[]>;
 
   constructor(private productService: ProductService) {
     this.products$ = this.productService.getProducts();
+    this.searchedProducts$ = this.products$.pipe(
+      map((products) =>
+        products.filter((product) =>
+          product.name.toLowerCase().includes(this.search.toLowerCase())
+        )
+      )
+    );
   }
 }

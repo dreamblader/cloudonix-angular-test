@@ -28,7 +28,7 @@
     <th>Price</th>
     <th>Actions</th>
   </tr>
-  @for(product of products$ | async; track product){
+  @for(product of searchedProducts$ | async; track product){
   <tr>
     <td>{{ product.id }}</td>
     <td>{{ product.sku }}</td>

@@ -1,8 +1,8 @@
 <app-theme />
-<app-modal #modal>
+<app-modal>
     <p>IT THIS REAL?</p>
 </app-modal>
-<img ngSrc="/assets/cloudonix_logo.png" width="302" height="55" priority />
+<img ngSrc={{logoSrc()}} width="302" height="55" priority />
 @if(!logged){
 <token-form (addingTokenEvent)="startApp()" />
 } @else{

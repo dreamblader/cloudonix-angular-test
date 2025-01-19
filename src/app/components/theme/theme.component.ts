@@ -1,7 +1,8 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { SunComponent } from './sun-component/sun.component';
 import { MoonComponent } from './moon-component/moon.component';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-theme',
@@ -10,12 +11,16 @@ import { MoonComponent } from './moon-component/moon.component';
   styleUrl: './theme.component.css',
 })
 export class ThemeComponent {
-  darkMode = false;
   private readonly document = inject(DOCUMENT);
+  darkMode: Signal<Boolean>;
+
+  constructor(private theme: ThemeService) {
+    this.darkMode = this.theme.isDark;
+  }
 
   darkModeClick() {
-    this.darkMode = !this.darkMode;
-    if (this.darkMode) {
+    this.theme.toogleTheme();
+    if (this.darkMode()) {
       this.document.body.classList.add('dark-theme');
     } else {
       this.document.body.classList.remove('dark-theme');
