@@ -6,6 +6,8 @@
   --body: #fff;
   --text-menu: #fff;
   --text-body: #000;
+  --normal-grey: rgba(97, 97, 97, 0.5);
+  font-size: larger;
 }
 
 .dark-theme {
@@ -30,7 +32,18 @@ app-root {
 }
 
 .container {
-  background-color: rgba(97, 97, 97, 0.5);
+  background-color: var(--normal-grey);
   padding: 20px;
   border-radius: 10px;
+}
+
+input,
+button {
+  font-size: large;
+}
+
+@media (max-width: 700px) {
+  :root {
+    font-size: medium;
+  }
 }

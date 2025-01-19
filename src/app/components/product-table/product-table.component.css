@@ -19,6 +19,8 @@ svg {
   margin-left: 5px;
   padding: 5px 6px;
   cursor: pointer;
+  border: 2px solid black;
+  background-color: var(--accent);
 }
 
 th,
