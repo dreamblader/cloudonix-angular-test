@@ -1,5 +1,7 @@
 @let locked = (locked$ | async) ?? false;
+@let product = product$ | async;
 
+@if(product){
 <div class="container">
     @if(product.id >= 0){
     <h2>Product #{{product.id}}</h2>
@@ -15,7 +17,7 @@
         <label for="description">Description:</label>
 
     </div>
-    <textarea id="description" rows="15" cols="60" [disabled]="locked" [(ngModel)]="product.description"></textarea>
+    <textarea id="description" rows="5" cols="60" [disabled]="locked" [(ngModel)]="product.description"></textarea>
     <h3>Details:</h3>
     <div class="form-row">
         <label for="cost">Cost:</label>
@@ -50,3 +52,4 @@
         <button class="delete" (click)="delete()">Delete</button>
     </div>
 </div>
+}

@@ -1,9 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Product from '../models/product';
-import { Observable, shareReplay } from 'rxjs';
+import { Observable, map, shareReplay } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
@@ -22,15 +21,25 @@ export class ProductService {
     return this.products$;
   }
 
-  selectProduct(id: number): Product {
-    this.products$.subscribe((products) => {
-      if (id < 0) {
-        this.selectedProduct = new Product();
-      } else {
-        this.selectedProduct = products[id];
-      }
-    });
+  selectProduct(id: number): Observable<Product> {
+    return this.products$.pipe(
+      map((products) => {
+        if (id < 0) {
+          return new Product();
+        } else {
+          return products[id];
+        }
+      })
+    );
 
-    return this.selectedProduct ?? new Product();
+    // .subscribe((products) => {
+    //   if (id < 0) {
+    //     this.selectedProduct = new Product();
+    //   } else {
+    //     this.selectedProduct = products[id];
+    //   }
+    // });
+
+    //return this.selectedProduct ?? new Product();
   }
 }

@@ -13,7 +13,7 @@ import { ProductService } from '../../services/product.service';
   styleUrl: './product-detail.component.css',
 })
 export class ProductDetailComponent {
-  product: Product;
+  product$: Observable<Product>;
   locked$: Observable<boolean>;
 
   constructor(
@@ -21,7 +21,7 @@ export class ProductDetailComponent {
     private productService: ProductService
   ) {
     const productIndex = Number(route.snapshot.paramMap.get('id'));
-    this.product = productService.selectProduct(
+    this.product$ = productService.selectProduct(
       Number.isNaN(productIndex) ? -1 : productIndex
     );
 
