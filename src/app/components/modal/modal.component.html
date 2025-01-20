@@ -1,7 +1,19 @@
-@if(show){
-<div (click)="toggle()" class="overlay"></div>
+@let product = product$ | async;
+@if(showModal){
+<div class="overlay"></div>
 <div class="modal">
-    <ng-content></ng-content>
+    <h1>Warning!</h1>
+    <p>You are going to delete the item:</p>@if(product){
+    <p>
+        <b> {{product.name ?? ""}} [{{product.sku ?? ""}}] </b>
+    </p>
+    }
+    <p>Are you sure?</p>
+    <div class="button-belt">
+        <button class="delete" (click)="confirm()">YES</button>
+        <button (click)="close()">NO</button>
+    </div>
+
 </div>
 
 }

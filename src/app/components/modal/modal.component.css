@@ -1,14 +1,44 @@
 .modal {
   background: var(--body);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   border-radius: 8px;
   box-shadow: 0 2px 8px #333;
   min-width: 320px;
   position: fixed;
+  text-align: center;
   left: 50%;
   padding: 24px;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 11;
+}
+
+.button-belt {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+}
+
+button {
+  border-radius: 10px;
+  padding: 5px 5px;
+  background-color: var(--secondary);
+  color: var(--text-body);
+  font-size: large;
+  font-weight: bold;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.delete {
+  background-color: var(--accent);
+}
+
+button:hover {
+  filter: brightness(var(--bright));
 }
 
 .overlay {

@@ -5,6 +5,7 @@ import { Observable, map, shareReplay } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { ProductPostRequest } from '../models/product-post-request';
 import { ProductPatchRequest } from '../models/product-patch-request';
+import { ModalActions, ModalService } from './modal.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ import { ProductPatchRequest } from '../models/product-patch-request';
 export class ProductService {
   private products$: Observable<Product[]>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private modal: ModalService) {
     this.products$ = this.http
       .get<Product[]>(environment.rootURL + '/items')
       .pipe(shareReplay(1));
@@ -47,7 +48,15 @@ export class ProductService {
     );
   }
 
-  deleteProduct(id: number): void {
-    console.log('DELETE');
+  deleteProduct(id: number): Observable<any> {
+    this.modal.openModal(id);
+    return this.modal.modalState$.pipe(
+      map((state) => {
+        if (state == ModalActions.CONFIRM) {
+          return this.http.delete(environment.rootURL + '/items/' + id);
+        }
+        return state;
+      })
+    );
   }
 }

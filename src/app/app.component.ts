@@ -4,10 +4,12 @@ import { ThemeComponent } from './components/theme/theme.component';
 import { CrudService } from './services/crud.service';
 import { ThemeService } from './services/theme.service';
 import { RouterOutlet } from '@angular/router';
+import { ModalComponent } from './components/modal/modal.component';
+import { ModalService } from './services/modal.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NgOptimizedImage, ThemeComponent],
+  imports: [RouterOutlet, NgOptimizedImage, ThemeComponent, ModalComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
