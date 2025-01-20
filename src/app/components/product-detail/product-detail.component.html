@@ -1,7 +1,7 @@
 @let locked = (locked$ | async) ?? false;
 
 <div class="container">
-    @if(product.id > 0){
+    @if(product.id >= 0){
     <h2>Product #{{product.id}}</h2>
     } @else{
     <h2>New Product</h2>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="button-belt">
-        @if(locked && product.id > 0){
+        @if(locked && product.id >= 0){
         <button class="edit" (click)="toogleEdit()">Edit</button>
         }
         <button [disabled]="locked" (click)="apply()">Apply</button>

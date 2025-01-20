@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Product from '../models/product';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, Observable, shareReplay } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -9,27 +9,28 @@ import { toSignal } from '@angular/core/rxjs-interop';
   providedIn: 'root',
 })
 export class ProductService {
-  private products$: Observable<Product[]>;
   private selectedProduct?: Product;
+  private products$: Observable<Product[]>;
 
   constructor(private http: HttpClient) {
-    this.products$ = EMPTY;
+    this.products$ = this.http
+      .get<Product[]>(environment.rootURL + '/items')
+      .pipe(shareReplay(1));
   }
 
   getProducts(): Observable<Product[]> {
-    const endpoint = '/items';
-    this.products$ = this.http.get<Product[]>(environment.rootURL + endpoint);
-
     return this.products$;
   }
 
-  selectProduct(id: number): void {
-    this.products$.subscribe(
-      (products) => (this.selectedProduct = products[id])
-    );
-  }
+  selectProduct(id: number): Product {
+    this.products$.subscribe((products) => {
+      if (id < 0) {
+        this.selectedProduct = new Product();
+      } else {
+        this.selectedProduct = products[id];
+      }
+    });
 
-  getSelectedProduct(): Product {
     return this.selectedProduct ?? new Product();
   }
 }

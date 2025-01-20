@@ -5,6 +5,7 @@ import { CrudToolsComponent } from '../crud-tools/crud-tools.component';
 import { map, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { SvgComponent } from '../svg/svg.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'product-table',
@@ -16,7 +17,7 @@ export class ProductTableComponent {
   search = '';
   products$: Observable<Product[]>;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private router: Router) {
     this.products$ = this.productService
       .getProducts()
       .pipe(
@@ -26,5 +27,9 @@ export class ProductTableComponent {
           )
         )
       );
+  }
+
+  createProduct() {
+    this.router.navigate(['/product/new']);
   }
 }

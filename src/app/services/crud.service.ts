@@ -15,7 +15,7 @@ export class CrudService {
 
   action(type: ToolOptions, id?: number): void {
     const isEdit = type == ToolOptions.EDIT;
-    this.router.navigate([`/product/${id}`], {
+    this.router.navigate([`/product`, id], {
       queryParams: { edit: isEdit },
     });
   }

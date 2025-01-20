@@ -4,7 +4,10 @@ class Product {
   description: string = '';
   sku: string = '';
   cost: number = 0;
-  profile: { [k: string]: any } = {};
+  profile: { [k: string]: any } = {
+    type: 'furniture',
+    available: true,
+  };
 }
 
 export default Product;
