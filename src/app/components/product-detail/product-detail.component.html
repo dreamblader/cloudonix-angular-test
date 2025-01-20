@@ -60,7 +60,8 @@
     <div class="form-row">
         <label for="extra.key">{{extra.key}}:</label>
         <input id="extra.key" [disabled]="locked" type="text" [(ngModel)]="extra.value" />
-        <button [disabled]="locked" (click)="removeKey(extra.key)"><app-svg type="trash" size="medium" /></button>
+        <button class="delete" [disabled]="locked" (click)="removeKey(extra.key)"><app-svg type="trash"
+                size="medium" /></button>
     </div>
     }
 
