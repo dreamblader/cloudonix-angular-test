@@ -1,29 +1,31 @@
 import { Component } from '@angular/core';
 import Product from '../../models/product';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, Observable, of } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { ProductService } from '../../services/product.service';
+import { SvgComponent } from '../svg/svg.component';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [FormsModule, AsyncPipe],
+  imports: [FormsModule, AsyncPipe, SvgComponent],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',
 })
 export class ProductDetailComponent {
+  id: number;
   product$: Observable<Product>;
   locked$: Observable<boolean>;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private productService: ProductService
   ) {
     const productIndex = Number(route.snapshot.paramMap.get('id'));
-    this.product$ = productService.selectProduct(
-      Number.isNaN(productIndex) ? -1 : productIndex
-    );
+    this.id = Number.isNaN(productIndex) ? -1 : productIndex;
+    this.product$ = productService.selectProduct(this.id);
 
     this.locked$ = route.queryParamMap.pipe(
       map((params) => {
@@ -32,11 +34,17 @@ export class ProductDetailComponent {
     );
   }
 
+  goBack() {
+    this.router.navigate(['/']);
+  }
+
   apply() {}
 
-  delete() {}
+  delete() {
+    this.productService.deleteProduct(this.id);
+  }
 
   toogleEdit() {
-    //this.locked$ = this.locked$.pipe(map((locked) => !locked));
+    this.locked$ = of(false);
   }
 }

@@ -31,15 +31,9 @@ export class ProductService {
         }
       })
     );
+  }
 
-    // .subscribe((products) => {
-    //   if (id < 0) {
-    //     this.selectedProduct = new Product();
-    //   } else {
-    //     this.selectedProduct = products[id];
-    //   }
-    // });
-
-    //return this.selectedProduct ?? new Product();
+  deleteProduct(id: number): void {
+    console.log('DELETE');
   }
 }

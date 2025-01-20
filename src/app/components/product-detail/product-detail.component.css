@@ -2,6 +2,12 @@
   margin-top: 20px;
 }
 
+.back {
+  border: none;
+  background-color: transparent;
+  margin-right: auto;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -9,10 +15,18 @@
   align-items: start;
 }
 
-.form-row {
+.title-row {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
   margin-bottom: 10px;
 }
 
@@ -21,7 +35,7 @@
 }
 
 h2 {
-  align-self: center;
+  margin-right: auto;
 }
 
 textarea {
@@ -58,6 +72,7 @@ button:disabled,
 button[disabled] {
   opacity: 0.25;
   background-color: var(--normal-grey);
+  cursor: not-allowed;
 }
 
 .edit {
@@ -66,4 +81,8 @@ button[disabled] {
 
 .delete {
   background-color: var(--accent);
+}
+
+button:hover {
+  filter: brightness(var(--bright));
 }

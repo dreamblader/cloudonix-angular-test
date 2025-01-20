@@ -3,53 +3,65 @@
 
 @if(product){
 <div class="container">
-    @if(product.id >= 0){
-    <h2>Product #{{product.id}}</h2>
-    } @else{
-    <h2>New Product</h2>
-    }
-
-    <div class="form-row">
-        <label for="name">Name:</label>
-        <input id="name" [disabled]="locked" type="text" [(ngModel)]="product.name" />
-    </div>
-    <div class="form-row">
-        <label for="description">Description:</label>
-
-    </div>
-    <textarea id="description" rows="5" cols="60" [disabled]="locked" [(ngModel)]="product.description"></textarea>
-    <h3>Details:</h3>
-    <div class="form-row">
-        <label for="cost">Cost:</label>
-        <input id="cost" [disabled]="locked" type="text" [(ngModel)]="product.cost" />
-    </div>
-    <div class="form-row">
-        <label for="type">Type:</label>
-        <select name="type" [disabled]="locked" [(ngModel)]="product.profile['type']">
-            <option value="furniture" selected>Furniture</option>
-            <option value="equipment">Equipment</option>
-            <option value="stationary">Stationary</option>
-            <option value="part">Part</option>
-        </select>
-    </div>
-    <div class="form-row">
-        <label for="available">Available</label>
-        <input id="available" [disabled]="locked" type="checkbox" [(ngModel)]="product.profile['available']" />
-    </div>
-    <div class="form-row">
-        <label for="backlog">Backlog:</label>
-        <input id="backlog" [disabled]="locked" type="number" [(ngModel)]="product.profile['backlog']" />
-    </div>
-    <div class="extra">
-        <!-- @for for the other key value pairs -->
-    </div>
-
-    <div class="button-belt">
-        @if(locked && product.id >= 0){
-        <button class="edit" (click)="toogleEdit()">Edit</button>
+    <div class="title-row">
+        <button class="back" (click)="goBack()">
+            <app-svg type="arrow-back" size="medium" />
+        </button>
+        @if(product.id >= 0){
+        <h2>Product #{{product.id}}</h2>
+        } @else{
+        <h2>New Product</h2>
         }
-        <button [disabled]="locked" (click)="apply()">Apply</button>
-        <button class="delete" (click)="delete()">Delete</button>
     </div>
+
+
+    @if(product.id < 0){ <div class="form-row">
+        <label for="sku">SKU:</label>
+        <input id="sku" [disabled]="locked" type="text" [(ngModel)]="product.sku" />
+</div>
+}
+
+<div class="form-row">
+    <label for="name">Name:</label>
+    <input id="name" [disabled]="locked" type="text" [(ngModel)]="product.name" />
+</div>
+<div class="form-row">
+    <label for="description">Description:</label>
+
+</div>
+<textarea id="description" rows="5" cols="60" [disabled]="locked" [(ngModel)]="product.description"></textarea>
+<h3>Details:</h3>
+<div class="form-row">
+    <label for="cost">Cost:</label>
+    <input id="cost" [disabled]="locked" type="text" [(ngModel)]="product.cost" />
+</div>
+<div class="form-row">
+    <label for="type">Type:</label>
+    <select name="type" [disabled]="locked" [(ngModel)]="product.profile['type']">
+        <option value="furniture" selected>Furniture</option>
+        <option value="equipment">Equipment</option>
+        <option value="stationary">Stationary</option>
+        <option value="part">Part</option>
+    </select>
+</div>
+<div class="form-row">
+    <label for="available">Available</label>
+    <input id="available" [disabled]="locked" type="checkbox" [(ngModel)]="product.profile['available']" />
+</div>
+<div class="form-row">
+    <label for="backlog">Backlog:</label>
+    <input id="backlog" [disabled]="locked" type="number" [(ngModel)]="product.profile['backlog']" />
+</div>
+<div class="extra">
+    <!-- @for for the other key value pairs -->
+</div>
+
+<div class="button-belt">
+    @if(locked && product.id >= 0){
+    <button class="edit" (click)="toogleEdit()">Edit</button>
+    }
+    <button [disabled]="locked" (click)="apply()">{{ product.id < 0 ? "Save" : "Apply" }}</button>
+            <button class="delete" (click)="delete()">Delete</button>
+</div>
 </div>
 }

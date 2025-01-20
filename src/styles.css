@@ -6,6 +6,7 @@
   --body: #fff;
   --text-menu: #fff;
   --text-body: #000;
+  --bright: 1.25;
   --normal-grey: rgba(97, 97, 97, 0.5);
   font-size: larger;
 }
@@ -16,6 +17,7 @@
   --accent: #d20072;
   --body: #434343;
   --text-body: #fff;
+  --bright: 0.75;
 }
 
 body {
@@ -42,6 +44,22 @@ button,
 select,
 option {
   font-size: large;
+  transition: 0.5s;
+}
+
+svg path {
+  fill: inherit;
+  stroke: inherit;
+}
+
+svg {
+  all: inherit;
+  color: var(--text-body);
+}
+
+use {
+  stroke: var(--text-body);
+  transition: 0.5s;
 }
 
 @media (max-width: 700px) {
