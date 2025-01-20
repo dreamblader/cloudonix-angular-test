@@ -1,5 +1,4 @@
 @let locked = (locked$ | async) ?? false;
-@let product = product$ | async;
 
 @if(product){
 <div class="container">
@@ -37,7 +36,8 @@
 </div>
 <div class="form-row">
     <label for="type">Type:</label>
-    <select name="type" [disabled]="locked" [(ngModel)]="product.profile['type']">
+    <select name="type" [disabled]="locked" [(ngModel)]="product.profile['type']"
+        [ngModel]="product.profile['type'] || 'furniture'">
         <option value="furniture" selected>Furniture</option>
         <option value="equipment">Equipment</option>
         <option value="stationary">Stationary</option>
@@ -46,20 +46,37 @@
 </div>
 <div class="form-row">
     <label for="available">Available</label>
-    <input id="available" [disabled]="locked" type="checkbox" [(ngModel)]="product.profile['available']" />
+    <input id="available" [disabled]="locked" type="checkbox" [(ngModel)]="product.profile['available']"
+        [ngModel]="product.profile['available'] || true" />
 </div>
 <div class="form-row">
     <label for="backlog">Backlog:</label>
     <input id="backlog" [disabled]="locked" type="number" [(ngModel)]="product.profile['backlog']" />
 </div>
+<h3>Extra:</h3>
 <div class="extra">
-    <!-- @for for the other key value pairs -->
+    @for(extra of product.profile | keyvalue; track extra){
+    @if(extra.key !== 'type' && extra.key !== 'available' && extra.key !== 'backlog'){
+    <div class="form-row">
+        <label for="extra.key">{{extra.key}}:</label>
+        <input id="extra.key" [disabled]="locked" type="text" [(ngModel)]="extra.value" />
+        <button [disabled]="locked" (click)="removeKey(extra.key)"><app-svg type="trash" size="medium" /></button>
+    </div>
+    }
+
+    }
+    <div class="form-row end">
+        <input id="newKey" [disabled]="locked" type="text" [(ngModel)]="newKey" />
+        <button (click)="addKey()" [disabled]="locked"><app-svg size="small" type="add" /></button>
+    </div>
 </div>
+
 
 <div class="button-belt">
     @if(locked && product.id >= 0){
     <button class="edit" (click)="toogleEdit()">Edit</button>
     }
+
     <button [disabled]="locked" (click)="apply()">{{ product.id < 0 ? "Save" : "Apply" }}</button>
             <button class="delete" (click)="delete()">Delete</button>
 </div>

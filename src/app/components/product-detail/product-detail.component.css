@@ -86,3 +86,18 @@ button[disabled] {
 button:hover {
   filter: brightness(var(--bright));
 }
+
+.extra {
+  width: 100%;
+  background-color: white;
+}
+
+.end {
+  border-top: 2px solid var(--normal-grey);
+}
+
+.extra > .form-row {
+  width: 100%;
+  padding: 5px;
+  margin: 0;
+}
