@@ -11,13 +11,13 @@
     <th>Price</th>
     <th>Actions</th>
   </tr>
-  @for(product of products$ | async; track product; let i = $index){
+  @for(product of products$ | async; track product){
   <tr>
     <td>{{ product.id }}</td>
     <td>{{ product.sku }}</td>
     <td>{{ product.name }}</td>
     <td>${{ product.cost.toFixed(2) }}</td>
-    <td><crud-tools [productId]="i" /></td>
+    <td><crud-tools [productId]="product.id" /></td>
   </tr>
   }
 </table>

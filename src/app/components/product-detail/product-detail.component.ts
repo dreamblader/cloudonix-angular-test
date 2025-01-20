@@ -46,6 +46,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   goBack() {
+    this.productService.refreshProducts();
     this.router.navigate(['/']);
   }
 
@@ -79,7 +80,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   delete() {
-    this.productService.deleteProduct(this.id);
+    this.productService.deleteProduct(this.id).subscribe(() => {
+      this.goBack();
+    });
   }
 
   toogleEdit() {

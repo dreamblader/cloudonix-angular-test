@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { ProductService } from './product.service';
 
 export enum ModalActions {
   OPEN,
@@ -14,6 +15,8 @@ export class ModalService {
   private modalSubject = new Subject<ModalActions>();
   modalState$ = this.modalSubject.asObservable();
   id?: number;
+
+  constructor() {}
 
   openModal(id: number) {
     this.id = id;

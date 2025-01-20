@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ToolOptions } from '../components/crud-tools/crud-tools.component';
 import { Router } from '@angular/router';
 import { ProductService } from './product.service';
+import { tap } from 'rxjs';
 
 export interface CrudAction {
   type: ToolOptions;
@@ -16,7 +17,9 @@ export class CrudService {
 
   action(type: ToolOptions, id?: number): void {
     if (type == ToolOptions.DELETE) {
-      this.productService.deleteProduct(id ?? -1);
+      this.productService.deleteProduct(id ?? -1).subscribe(() => {
+        this.productService.refreshProducts();
+      });
       return;
     }
 
