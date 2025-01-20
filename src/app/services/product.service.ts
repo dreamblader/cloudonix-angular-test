@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Product from '../models/product';
-import { EMPTY, Observable, shareReplay } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { toSignal } from '@angular/core/rxjs-interop';
 
